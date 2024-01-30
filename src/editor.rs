@@ -25,6 +25,7 @@ impl Editor {
 
         let (mut width, mut height) = crossterm::terminal::size().unwrap();
 
+
         let mut content = String::new();
 
         //Set up the editor [Clearing and moving cursor]
@@ -38,8 +39,16 @@ impl Editor {
                         KeyCode::Char(character) => {
                             if event.modifiers == KeyModifiers::CONTROL && character == 'q' {
                                 self.should_run = false;
+                            } else {
+                                content.push(character);
                             }
-                            content.push(character);
+                        }
+                        KeyCode::Enter => {
+                            content.push('\r');
+                            content.push('\n');
+                        }
+                        KeyCode::Backspace => {
+                            content.pop();
                         }
                         _ => {}
                     },
