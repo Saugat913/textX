@@ -16,6 +16,7 @@ fn main() {
         display_usage(&args[0]);
     }
 
-    let editor = editor::Editor::defaut();
+    let editor = editor::Editor::default();
     editor.run();
+   
 }
